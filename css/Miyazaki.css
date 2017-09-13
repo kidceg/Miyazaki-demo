@@ -1,0 +1,135 @@
+body{
+	padding: 50px 0 70px 0;
+}
+
+/* 将轮播图的宽设置为100% */
+.carousel-inner img{
+	width: 100%;
+}
+/* 轮播图里面的文字描边+阴影 */
+.carousel .item h1{
+	text-shadow:0 0 2px black,5px 5px 5px #162866;	
+}
+
+
+/* theme_song表示电影主题曲板块*/
+.theme_song{
+	padding: 30px 0;
+}
+
+/* 主题曲板块的栅格栏内容居中 */
+.theme_song .col-md-4{
+	text-align: center;
+}
+
+/* 栅格栏每部分用一个box_的div包起来 */
+.theme_song .box_{
+	margin: 0 10px;
+	padding:20px 0;
+	border: 1px solid #D1D1D1;
+	border-radius: 5px;
+	box-shadow:3px 3px 3px #E9E9E9;
+}
+
+/* 主题曲板块的文字描边+阴影 */
+.theme_song h3{
+	color: black;
+    text-shadow:0 0 1px black;
+}
+
+/* 主题曲的播放器 */
+.theme_song audio{
+	width: 200px;
+	border-radius: 3px;
+	opacity: 0.7;
+}
+
+/* 主题曲两行栅格栏块上下间隔 */
+.theme_song .row{
+	margin-top: 30px;
+}
+
+/* 分割线的样式 */
+.divider_ {
+	margin: 40px 0;
+	color: black;
+
+}
+
+/* 推荐电影部分 的标题样式 */
+#movieIntroduced h2{
+	padding:20px 0;
+    text-shadow:0 0 1px #D1D1D1;
+}
+
+/* 推荐电影部分 的栅格栏内容居中 */
+#movieIntroduced .col-md-4{
+	text-align: center;
+}
+
+/* 推荐电影部分 的图片样式 */
+#movieIntroduced img{
+	margin:20px 0;
+    box-shadow:2px 2px 2px gray;
+    border-radius: 3px;
+}
+
+/* 底部样式 */
+.footer_ p{
+	margin: 0 50px;
+}
+
+/* 为了实现不同分辨率下，字体大小的变化等 */
+/* 当分辨率小于992px的时候 */
+@media (max-width: 992px) {
+
+	/* 轮播图的字体大小 */
+	.carousel-inner h1{
+		font-size: 25px;
+	}
+
+}
+
+@media (max-width: 500px) {
+
+	/* 轮播图的标题大小 */
+	.carousel-inner h1{
+		font-size: 15px;
+	}
+
+	/* 主题曲部分 */
+	.theme_song{
+		padding: 0 0 20px 0;
+	}
+
+	/* 分割线部分 */
+	.divider_ {
+		margin: 10px 0 20px 0;
+    }
+
+    /* 主题曲的图片宽度 */
+	.theme_song img{
+		width: 150px;
+	}
+
+	/* 主题曲的标题部分 */
+	.theme_song h3{
+		font-size: 18px;
+    }
+
+    /* 推荐电影板块 的图片 */
+    #movieIntroduced img{
+    	width: 150px;
+    }
+
+    /* 推荐电影板块 的标题 */
+    #movieIntroduced h2{
+    	font-size: 15px;
+    }
+
+    /* 推荐电影板块 的段落 */
+    #movieIntroduced p{
+    	font-size: 12px;
+    }
+
+}
