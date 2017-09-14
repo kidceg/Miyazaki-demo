@@ -19,6 +19,7 @@ body{
 
 /* 主题曲板块的栅格栏内容居中 */
 .theme_song .col-md-4{
+	margin-bottom: 40px;
 	text-align: center;
 }
 
@@ -79,6 +80,11 @@ body{
 	margin: 0 50px;
 }
 
+.footer_ img{
+	width: 50px;
+	margin: 0 50px;
+} 
+
 /* 为了实现不同分辨率下，字体大小的变化等 */
 /* 当分辨率小于992px的时候 */
 @media (max-width: 992px) {
@@ -131,5 +137,9 @@ body{
     #movieIntroduced p{
     	font-size: 12px;
     }
+    .footer_ img{
+	width: 25px;
+	margin: 0 50px;
+}
 
 }
