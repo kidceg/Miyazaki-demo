@@ -1,7 +1,12 @@
 body{
 	margin: 0;
-	padding: 0 0 70px 0;
+	padding: 0 0 50px 0;
 }
+
+.navbar{
+	margin-bottom: 0;
+}
+
 
 /* 将轮播图的宽设置为100% */
 .carousel-inner img{
