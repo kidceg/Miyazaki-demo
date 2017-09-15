@@ -11,4 +11,47 @@ $(document).ready(function () {
 		$("#movieName a[href='" + href + "']").tab("show");
 	});
 
+
+$('audio').click(function() {
+
+	if ($(this).hasClass('pause')) {
+	   $("audio").trigger("pause");
+	   $(this).removeClass('pause');
+	   $(this).addClass('play');
+	} else {
+	   $("audio").trigger("pause");
+	   $(this).removeClass('play');
+	   $(this).addClass('pause');
+	}
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
