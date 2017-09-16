@@ -4,7 +4,10 @@ body{
 	padding-bottom: 70px;
 }
 
-
+p{
+    margin:0;
+    padding:0;
+}
 
 /* 将轮播图的宽设置为100% */
 
@@ -32,7 +35,7 @@ body{
 /* 栅格栏每部分用一个box_的div包起来 */
 .theme_song .box_{
 
-	padding:30px 0;
+	padding:20px 0 20px 0;
 	border: 1px solid #D1D1D1;
 	border-radius: 5px;
 	box-shadow:5px 5px 5px #E9E9E9;
@@ -44,13 +47,88 @@ body{
     text-shadow:0 0 1px black;
 }
 
-/* 主题曲的播放器 */
-.theme_song audio{
-	width: 200px;
+.theme_song .song{
+	display: inline-block;
+	margin-top: 10px;
+	width:240px;
+	height:30px; 
+	line-height: 30px;
+	border: 1px solid #AAB2C9;
 	border-radius: 3px;
-	opacity: 0.7;
+	box-shadow: 1px 1px 2px #AAB2C9;
+	overflow: hidden;
 }
 
+/* 主题曲的播放器 */
+.theme_song audio{
+    margin: 0;
+    padding: 0;
+	width: 0;
+	height: 0;
+}
+
+.time{
+	/* float: right; */
+	width: 35%;
+}
+
+.time p{
+	display: inline-block;
+	/* 谷歌字体最小为12px,可缩小比例改变字体大小 */
+	-webkit-transform : scale(0.8);
+	font-size: 12px;
+}
+
+
+.btn_audio{
+	color: #162E6C;
+	margin-left: 5px;
+	margin-top: 2px;
+	float: left;
+	font-size: 20px;
+	background: white;
+}
+
+.btn_audio:hover{
+	color: #3F5286;
+	cursor: pointer;
+}
+
+.time_bar{
+	position: relative;
+	float: left;
+	margin-left: 5px;
+	margin-top: 8px;
+    padding: 0 4px;
+	width: 55%;
+	height: 12px;
+	background-color: white;
+	border-radius: 3px;
+	box-shadow: 0px 0px 5px gray;
+	overflow: hidden;
+}
+
+.progress_bar{
+	margin:5px 0;
+	float: left;
+	width: 0;
+	height: 2px;
+	background: #3F5286;
+	border-radius: 2px;
+	box-shadow: 0px 0px 2px gray;
+}
+
+.yuan{
+	position: absolute;
+	display: none;
+	margin-top: 2px;
+	left: 3px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+/* 	box-shadow: 0 0 1px #AAB2C9; */
+	background-color:  #3F5286;
+}
 
 /* 分割线的样式 */
 .divider_ {
@@ -113,6 +191,10 @@ body{
 	.theme_song{
 		margin-top: 40px;
 		margin-bottom: 20px;
+	}
+
+	.theme_song .song{
+		width:175px;
 	}
 
 	/* 分割线部分 */
