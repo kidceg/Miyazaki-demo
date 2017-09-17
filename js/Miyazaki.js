@@ -49,19 +49,16 @@ var len = $song.length;
 var pre_audio;
 //用来储存上一个播放的按钮的下标
 var pre_index;
-//Atime表示audio的总时间
-//Ctime用来表示audio的当前时间
-//Pmax表示进度条的最大长度
-var Atime,Ctime,Pmax;
 
 for (var i = 0; i < len; i++) {
 	// 注意！获取宽度，如果是非内联css样式，只能用offsetWidth
 	//进度条的最大长度，整个框架x55%
-	Pmax = $song[0].offsetWidth * 55 /100;
-	//用来表示audio的总时间
-	Atime = 0;
+	var Pmax = $song[0].offsetWidth * 55 /100;
+
 	// 当点击播放按钮时
   $btn_audio.eq(i).on("click", function () {
+ 	//用来表示audio的总时间
+	var Atime = 0; 	
   	// 获取当前节点data-index属性值，和对应audio的ID一样
   	var data_index_val = $(this).attr('data-index');
   	var x = data_index_val.match(/\d/);
@@ -93,7 +90,7 @@ for (var i = 0; i < len; i++) {
 	  			clearInterval(a);
 	  		}
 	  		//定义当前audio已播放时间
-            Ctime = pre_audio.currentTime;
+           var Ctime = pre_audio.currentTime;
 	  		// 让(class为time_count)p标签内容变成当前播放时间
 	  		if (Ctime > 0.01) {
 		  	//Atime 表示audio总时间
