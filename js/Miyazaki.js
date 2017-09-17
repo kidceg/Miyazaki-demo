@@ -49,16 +49,22 @@ var len = $song.length;
 var pre_audio;
 //用来储存上一个播放的按钮的下标
 var pre_index;
+//Atime表示audio的总时间
+//Ctime用来表示audio的当前时间
+//Pmax表示进度条的最大长度
+var Atime,Ctime,Pmax;
 
 for (var i = 0; i < len; i++) {
 	// 注意！获取宽度，如果是非内联css样式，只能用offsetWidth
-	//获取进度条的最大长度，整个框架x55%
-	var Pmax = $song[0].offsetWidth * 55 /100;
+	//进度条的最大长度，整个框架x55%
+	Pmax = $song[0].offsetWidth * 55 /100;
+	//用来表示audio的总时间
+	Atime = 0;
 	// 当点击播放按钮时
   $btn_audio.eq(i).on("click", function () {
   	// 获取当前节点data-index属性值，和对应audio的ID一样
-  	var y = $(this).attr('data-index');
-  	var x = y.match(/\d/);
+  	var data_index_val = $(this).attr('data-index');
+  	var x = data_index_val.match(/\d/);
     // 点击时判断是否是三角形播放按钮
   	if ($(this).hasClass('glyphicon-play') ) {
 	   	//让圆点显示出来
@@ -69,7 +75,7 @@ for (var i = 0; i < len; i++) {
         	$btn_audio.eq(pre_index).removeClass('glyphicon-pause').addClass('glyphicon-play');
         }
         // 储存当前audio的id作为下一次点击的判断
-	        pre_audio = $("#"+y)[0];
+	        pre_audio = $("#"+data_index_val)[0];
 	    //获得当前audio的下标作为下一次点击的按钮下标
 	        pre_index = x;
 
@@ -78,25 +84,28 @@ for (var i = 0; i < len; i++) {
         //当前符号条件的audio按钮背景换成暂停
 	   	$(this).removeClass('glyphicon-play').addClass('glyphicon-pause');
 		//当前符号条件的audio播放
-	  	$("#"+y)[0].play();
-	  	//定义Atime表示当前audio的总时间
-	  	var Atime = minSecond($("#"+y)[0].duration);	
+	  	pre_audio.play();
+	
         //设置定时器，
 	  	var a = setInterval(function(){
 	  		//当audio暂停的时候，清除定时器
-	  		if ($("#"+y)[0].paused){
+	  		if (pre_audio.paused){
 	  			clearInterval(a);
 	  		}
 	  		//定义当前audio已播放时间
-            var Ctime = $("#"+y)[0].currentTime;
+            Ctime = pre_audio.currentTime;
 	  		// 让(class为time_count)p标签内容变成当前播放时间
 	  		if (Ctime > 0.01) {
+		  	//Atime 表示audio总时间
+		  	if(Atime == 0) {
+		  	Atime = minSecond(pre_audio.duration);		  		
+		  }	  			
             $time_count.eq(x).html(minSecond(Ctime) + "/" + Atime);	  			
 	  		}
             // 播放的时候进度条的宽度变化
-	  		$progress_bar.eq(x).css("width",(Pmax* 85 / 100  * Ctime / $("#"+y)[0].duration) +'px');
+	  		$progress_bar.eq(x).css("width",(Pmax* 85 / 100  * Ctime / pre_audio.duration) +'px');
 	  		// 播放时候小圆点的移动
-	  	    $yuan.eq(x).css("left", (Pmax * 85 / 100 * Ctime / $("#"+y)[0].duration + 3)+"px");
+	  	    $yuan.eq(x).css("left", (Pmax * 85 / 100 * Ctime / pre_audio.duration + 3)+"px");
 
 	  	},1000)
 	  	
@@ -105,7 +114,7 @@ for (var i = 0; i < len; i++) {
   		// 当点击按钮的时候如果按钮是暂停图标，就改成播放图标
 	   	$(this).removeClass('glyphicon-pause').addClass('glyphicon-play');	
   		// 当前audio暂停	
-	  	$("#"+y)[0].pause();  		
+	  	pre_audio.pause();  		
   	}
  
 
