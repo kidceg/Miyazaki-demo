@@ -79,7 +79,9 @@ for (var i = 0; i < len; i++) {
 	  		//定义当前audio已播放时间
             var Ctime = $audio.eq(x)[0].currentTime;
 	  		// 让(class为time_count)p标签内容变成当前播放时间
-            $time_count.eq(x).html(minSecond(Ctime) + "/" + Atime);
+	  		if (Ctime > 0.01) {
+            $time_count.eq(x).html(minSecond(Ctime) + "/" + Atime);	  			
+	  		}
             // 播放的时候进度条的宽度变化
 	  		$progress_bar.eq(x).css("width",(Pmax* 85 / 100  * Ctime / $audio.eq(x)[0].duration) +'px');
 	  		// 播放时候小圆点的移动
