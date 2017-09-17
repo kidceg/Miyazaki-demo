@@ -46,11 +46,11 @@ var $audio = $("audio");
 //获取总共的歌曲数量
 var len = $song.length;
 
-// 注意！获取宽度，如果是非内联css样式，只能用offsetWidth
-//获取进度条的最大长度，整个框架x55%
-var Pmax = $song[0].offsetWidth * 55  /100;
 
 for (var i = 0; i < len; i++) {
+	// 注意！获取宽度，如果是非内联css样式，只能用offsetWidth
+	//获取进度条的最大长度，整个框架x55%
+	var Pmax = $song[0].offsetWidth * 55 /100;
 	// 当点击播放按钮时
   $btn_audio.eq(i).on("click", function () {
   	// 获取当前节点对于父节点的下标
@@ -69,9 +69,7 @@ for (var i = 0; i < len; i++) {
 		//当前符号条件的audio播放
 	  	$audio.eq(x)[0].play();
 	  	//定义Atime表示当前audio的总时间
-	  	var Atime = minSecond($audio.eq(x)[0].duration);
-	  	//让(class为time_all的)p标签内容变成audio总时间
-	  	$time_all.eq(x).html(Atime);	
+	  	var Atime = minSecond($audio.eq(x)[0].duration);	
         //设置定时器，
 	  	var a = setInterval(function(){
 	  		//当audio暂停的时候，清除定时器
@@ -81,11 +79,11 @@ for (var i = 0; i < len; i++) {
 	  		//定义当前audio已播放时间
             var Ctime = $audio.eq(x)[0].currentTime;
 	  		// 让(class为time_count)p标签内容变成当前播放时间
-            $time_count.eq(x).html(minSecond(Ctime));
+            $time_count.eq(x).html(minSecond(Ctime) + "/" + Atime);
             // 播放的时候进度条的宽度变化
-	  		$progress_bar.eq(x).css("width",(Pmax* 88 / 100  * Ctime / $audio.eq(x)[0].duration) +'px');
+	  		$progress_bar.eq(x).css("width",(Pmax* 85 / 100  * Ctime / $audio.eq(x)[0].duration) +'px');
 	  		// 播放时候小圆点的移动
-	  	    $yuan.eq(x).css("left", (Pmax * 88 / 100 * Ctime / $audio.eq(x)[0].duration + 3)+"px");
+	  	    $yuan.eq(x).css("left", (Pmax * 85 / 100 * Ctime / $audio.eq(x)[0].duration + 3)+"px");
 
 	  	},1000)
 	  	
@@ -98,7 +96,7 @@ for (var i = 0; i < len; i++) {
   	}
  
 
-  })//addEventListener
+  })//按钮的click function
 
 }//最大的for
 
@@ -106,11 +104,15 @@ for (var i = 0; i < len; i++) {
 //把秒数转换才分钟
 function minSecond(n) {
 	var second_ = Math.floor(n%60);
-	if(second_<10){
+	if (second_ < 10) {
 		second_ = '0'+ second_;
 	}
-	var a = Math.floor(n/60) + ':' + second_;
-	return a;
+	if (Math.floor(n / 60) < 10) {
+	var a = "0" + Math.floor(n / 60) + ':' + second_;		
+	} else {
+	var a = Math.floor(n / 60) + ':' + second_;		
+	}
+	return a; 
 }
 
 
